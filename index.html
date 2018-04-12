@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0,minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+    <title>遇见</title>
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/com.css" rel="stylesheet" />
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/size.js"></script>
+</head>
+<body>
+    <audio controls='controls' id='myVideo' autoplay='autoplay' loop='loop'>
+        <source src='audio/1.mp3' type='audio/mpeg' />
+    </audio>
+    <div class="wrap">
+        <ul>
+            <li>
+                <p>#如果你信命 那所有的偶然都是注定</p>
+                <p>如果你不信 那所有的注定都是偶然#</p>
+            </li>
+            <li>
+                <p>#前世多少次的擦肩而过</p>
+                <p>换来今生能够与你相遇#</p>
+            </li>
+            <li>
+                <p>#我们在不同的路口相遇</p>
+                <p>在陌生的风景里寻觅#</p>
+            </li>
+            <li>
+                <p>#在自己心灵的空间里</p>
+                <p>编织美丽的邂逅与偶遇#</p>
+            </li>
+            <li>
+                <p>#就像耳旁一段清幽的旋律</p>
+                <p>眼前一幅纯美的画卷#</p>
+            </li>
+            <li>
+                <p>#是什么时候 我们不愿意再孤单地行走</p>
+                <p>在漆黑的夜里渴望一双温暖的手#</p>
+            </li>
+            <li>
+                <p>#是什么时候我们不再一个人泪流</p>
+                <p>漫然无助的时候有人为你分忧#</p>
+            </li>
+            <li>
+                <p>#是什么时候有人站在你的身后</p>
+                <p>陪你看尽风花雪月永远没有尽头#</p>
+            </li>
+            <li>
+                <p>#是什么时候思念开始落在眼眸</p>
+                <p>每个季节的眺望都充满了别样的温柔#</p>
+            </li>
+            <li>
+                <p>#是什么时候心中装满了爱的守候</p>
+                <p>简单的生命变得不再简陋#</p>
+            </li>
+            <li>
+                <p>#你说:游戏与现实要分开</p>
+                <p>红尘茫茫 我真不愿意一个人孤独地行走#</p>
+            </li>
+            <li>
+                <p>#我无法把一颗心分成两个部分去经营</p>
+                <p>我无法在虚拟与现实之间 穿梭自如#</p>
+            </li>
+            <li>
+                <p>#我不管爱葬身何处</p>
+                <p>我不求今生与你共度#</p>
+            </li>
+            <li>
+                <p>#我不管爱葬身何处</p>
+                <p>我只求陪你走到末路#</p>
+            </li>
+            <li>
+                <p>#我愿</p>
+                <p>花光此生所有运气 只为遇见你#</p>
+            </li>
+            <li>
+                <p>#哪怕</p>
+                <p>从你的全世界路过#</p>
+            </li>
+            <li>
+                <p>#任彼桑田沧海</p>
+                <p>颖慧岁月流金#</p>
+            </li>
+            <li>
+                <p>#心安即是归处</p>
+                <p>或可遇不强求#</p>
+            </li>
+        </ul>
+    </div>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        $(function () {
+            document.onreadystatechange = function () {
+                if (document.readyState = "complete") {
+                    $("body").show();
+                    $(".page1").addClass("curPage");
+                };
+            };
+
+            var _audio = document.getElementById('myVideo');
+            _audio.play();
+            document.getElementById('myVideo').play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                document.getElementById('myVideo').play();
+                document.getElementById('video').play();
+            }, false);
+        });
+    </script>
+    <script>
+        var oImgs = ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "7.jpeg", "8.jpeg", "9.jpeg",
+            "10.jpeg", "11.jpeg", "12.jpeg", "13.jpeg", "14.jpeg", "15.jpeg", "16.jpeg", "17.jpeg", "18.jpeg",
+            "19.jpeg",
+        ];
+        var index = 0;
+        var textIndex = 0;
+        for (var i = 0; i < oImgs.length; i++) {
+            var img = new Image();
+            img.src = "img/" + oImgs[i];
+            $(".wrap").append(img);
+        };
+        document.onreadystatechange = function () {
+            if (document.readyState = "complete") {
+                timeOut(timeRun);
+            };
+        };
+
+        //更换图片的方法
+        function timeRun() {
+            index++;
+            textIndex++;
+            if (index == oImgs.length) {
+                index = 0;
+                $(".wrap img").fadeOut(2000);
+                $(".wrap img").eq(0).fadeIn(2000);
+                // window.location.href = "xuejing/index.html";
+                clearTimeout(timeOuter);
+            } else {
+                $(".wrap img").fadeOut(2000);
+                $(".wrap img").eq(index - 1).fadeIn(2000);
+                $(".wrap ul li").fadeOut(2000);
+                $(".wrap ul li").eq(textIndex - 1).fadeIn(2000);
+            }
+        };
+        //递归 回调函数
+        function timeOut(cb) {
+            cb && cb();
+            var timeOuter = setTimeout(function () {
+                timeOut(cb);
+            }, 6000);
+        };
+    </script>
+</body>
+
+</html>
